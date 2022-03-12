@@ -1,4 +1,5 @@
 //import {useState} from 'react'
+import "../ComponentStyles/header.css";
 
 export default function Header({ p1Turn }) {
   return (

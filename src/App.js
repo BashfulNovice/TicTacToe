@@ -7,7 +7,9 @@ import checkWin from "./Components/checkWin.js";
 
 export default function App() {
   //State is kept here
+  //to controll who's turn it is
   const [p1Turn, setP1Turn] = useState(true);
+  //to controll the status of the board.
   const [status, setStatus] = useState([
     null,
     null,
@@ -19,22 +21,24 @@ export default function App() {
     null,
     null
   ]);
+  //keep track of game moves.
   const [history, setHistory] = useState([
     [null, null, null, null, null, null, null, null, null]
   ]);
+  //to toggle win screen
   const [winner, setWinner] = useState(null);
-  const [position, setPosition] = useState(0);
+  //const [position, setPosition] = useState(0);
 
   //Functions Below
   //helper function to assist in testing and debug
   const test = () => {
-    console.log(position);
+    //console.log(position);
     console.log(history);
   };
 
   //Function to reset the game board.
   const resetGame = () => {
-    setPosition(0);
+    //setPosition(0);
     setStatus([null, null, null, null, null, null, null, null, null]);
     setHistory([[null, null, null, null, null, null, null, null, null]]);
     setP1Turn(true);
@@ -50,7 +54,7 @@ export default function App() {
     let newHistory = history;
     newHistory.push(newStatus);
     setHistory(newHistory);
-    setPosition(position + 1);
+    //setPosition(position + 1);
     let win = checkWin(newStatus);
     if (win) {
       setWinner(win);
@@ -58,16 +62,27 @@ export default function App() {
   };
 
   const handleBack = () => {
-    let newStatus = history[position - 1];
+    let newStatus = history[history.length - 2];
     setStatus(newStatus);
-    setPosition(position - 1);
+    let newHistory = [...history];
+    newHistory.pop();
+    setHistory(newHistory);
+    setP1Turn(!p1Turn);
+    setWinner(null);
   };
+  // old
+  // const handleBack = () => {
+  //   let newStatus = history[position - 1];
+  //   setStatus(newStatus);
+  //   setPosition(position - 1);
+  // };
 
-  const handleForward = () => {
-    let newStatus = history[position + 1];
-    setStatus(newStatus);
-    setPosition(position + 1);
-  };
+  // experimental feature, redo. scroll through game.
+  // const handleForward = () => {
+  //   let newStatus = history[position + 1];
+  //   setStatus(newStatus);
+  //   setPosition(position + 1);
+  // };
 
   return (
     <div className="App">
@@ -77,20 +92,21 @@ export default function App() {
       {!winner ? (
         <h2>It is player {p1Turn ? "one's" : "two's"} turn</h2>
       ) : (
-        <h2 className="win-screen">
-          Player {winner[1] === "X" ? "One(X)" : "Two(O)"} Wins!
-        </h2>
+        <div className="win-screen">
+          <h2>Player {winner[1] === "X" ? "One(X)" : "Two(O)"} Wins!</h2>
+          <Game status={status} />
+        </div>
       )}
       <Game
-        position={position}
+        //position={position}
         history={history}
         handleMove={handleMove}
         status={status}
         setStatus={setStatus}
       />
       <ActionBar
-        handleForward={handleForward}
-        position={position}
+        // handleForward={handleForward}
+        //position={position}
         history={history.length}
         handleBack={handleBack}
         resetGame={resetGame}

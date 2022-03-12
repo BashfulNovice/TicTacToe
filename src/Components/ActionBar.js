@@ -1,8 +1,10 @@
+import "../ComponentStyles/action_bar.css";
+
 export default function ActionBar({
   resetGame,
   handleBack,
   handleForward,
-  position,
+  //position,
   history
 }) {
   // const handleReset = () => {
@@ -16,15 +18,15 @@ export default function ActionBar({
 
   return (
     <div>
-      <button disabled={position === 0 ? true : false} onClick={handleBack}>
+      <button disabled={history === 1 ? true : false} onClick={handleBack}>
         ⬅ Undo
       </button>
-      <button
+      {/* <button
         disabled={position === history - 1 ? true : false}
         onClick={handleForward}
       >
         Redo ➡
-      </button>
+      </button> */}
       <button onClick={resetGame}>Reset</button>
       {/* <button onClick = {testBar}>test</button> */}
     </div>
