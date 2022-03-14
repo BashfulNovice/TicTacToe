@@ -92,7 +92,7 @@ export default function App() {
       <h2>Start editing to see some magic happen!</h2> */}
       <Header p1Turn={p1Turn} />
       <h2 className="turn">
-        It is {p1Turn ? `${names.X}'s` : `${names.O}'s`} turn
+        It is {p1Turn ? `${names.X}'s` : `${names.O}'s`} Turn
       </h2>
       {/* conditional render to show win screen below */}
       {!winner ? null : (
