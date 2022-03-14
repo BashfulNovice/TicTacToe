@@ -1,0 +1,19 @@
+.actionBar {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
+  padding-top: 2vh;
+}
+
+.undo {
+  height: 6vh;
+  width: 16vw;
+  font-size: 3vh;
+}
+
+.reset {
+  height: 6vh;
+  width: 16vw;
+  font-size: 3vh;
+}

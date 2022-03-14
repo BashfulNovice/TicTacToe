@@ -19,11 +19,45 @@ h1 {
   font-size: 40px;
 }
 
-.win-screen {
-  width: 50%;
-  height: 50%;
+.win-blur {
   position: fixed;
-  top: 25%;
-  left: 25%;
-  background: darkgray;
+  left: 0;
+  top: 0;
+  background-color: rgba(212, 212, 327, 0.5);
+  height: 100vh;
+  width: 100vw;
+}
+.win-screen {
+  color: #12122b;
+  width: 60%;
+  height: 60%;
+  position: fixed;
+  top: 20%;
+  left: 20%;
+  background: #8cc084;
+  border-radius: 15px;
+}
+
+.win-anouncement {
+  padding-top: 4vh;
+}
+
+.turn {
+  padding-top: 2vh;
+  padding-bottom: 4vh;
+}
+
+.close {
+  position: absolute;
+  top: 4vh;
+  right: 4vh;
+  height: 4vh;
+  width: 4vh;
+}
+
+.play-again {
+  height: 5vh;
+  width: 15vh;
+  padding-top: -2vh;
+  font-size: 2vh;
 }

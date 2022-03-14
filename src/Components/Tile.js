@@ -1,13 +1,7 @@
 import { useState } from "react";
 import "../ComponentStyles/tile.css";
 
-export default function Tile({
-  text,
-  value,
-  handleMove,
-  //position,
-  history
-}) {
+export default function Tile({ text, value, handleMove, history }) {
   //Callback for click events on the game tiles
   const handleClick = (e) => {
     if (text === null) {
@@ -18,7 +12,6 @@ export default function Tile({
   return (
     <button
       id={value}
-      //disabled={position === history.length - 1 ? false : true}
       className="boardBttn"
       value={value}
       onClick={handleClick}
