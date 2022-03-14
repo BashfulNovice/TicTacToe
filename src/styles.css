@@ -61,3 +61,11 @@ h1 {
   padding-top: -2vh;
   font-size: 2vh;
 }
+
+.score {
+  width: 60%;
+  margin-left: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

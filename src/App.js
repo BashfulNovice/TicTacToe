@@ -27,12 +27,15 @@ export default function App() {
   ]);
   //to toggle win screen
   const [winner, setWinner] = useState(null);
+  const [score, setScore] = useState({ X: 0, O: 0 });
+  const [names, setNames] = useState({ X: "X", O: "O" });
+  const [editNames, setEditNames] = useState(false);
 
   //Functions Below
   //helper function to assist in testing and debug
   const test = () => {
     //console.log(position);
-    console.log(history);
+    console.log(checkWin(status));
   };
 
   //Function to reset the game board.
@@ -54,6 +57,9 @@ export default function App() {
     setHistory(newHistory);
     let win = checkWin(newStatus);
     if (win) {
+      let newScore = { ...score };
+      newScore[win[1]] = newScore[win[1]] + 1;
+      setScore(newScore);
       setWinner(win);
     }
   };
@@ -72,17 +78,28 @@ export default function App() {
     setWinner(null);
   };
 
+  const toggleNameEdit = () => {
+    setEditNames(!editNames);
+  };
+
+  const handleNameChange = (e) => {
+    setNames({ ...names, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="App">
       {/* <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2> */}
       <Header p1Turn={p1Turn} />
-      <h2 className="turn">It is player {p1Turn ? "one's" : "two's"} turn</h2>
+      <h2 className="turn">
+        It is {p1Turn ? `${names.X}'s` : `${names.O}'s`} turn
+      </h2>
+      {/* conditional render to show win screen below */}
       {!winner ? null : (
         <div className="win-blur">
           <div className="win-screen">
             <h3 className="win-anouncement">
-              Player {winner[1] === "X" ? "One(X)" : "Two(O)"} Wins!
+              {winner[1] === "X" ? `${names.X}` : `${names.O}`} Wins!
             </h3>
             <Game status={status} />
             <button className="play-again" onClick={resetGame}>
@@ -94,6 +111,34 @@ export default function App() {
           </div>
         </div>
       )}
+      {/* conditional render to show score, or inputs to edit names */}
+      {editNames ? (
+        <div className="name-edit">
+          <input
+            type="text"
+            onChange={(e) => handleNameChange(e)}
+            name="X"
+            value={names.X}
+          ></input>
+          <input
+            type="text"
+            onChange={(e) => handleNameChange(e)}
+            name="O"
+            value={names.O}
+          ></input>
+          <button onClick={toggleNameEdit}>Submit</button>
+        </div>
+      ) : (
+        <div className="score">
+          <p onClick={toggleNameEdit}>
+            {names["X"]}:{score.X}
+          </p>
+          <p onClick={toggleNameEdit}>
+            {names["O"]}:{score.O}
+          </p>
+        </div>
+      )}
+
       <Game
         history={history}
         handleMove={handleMove}
@@ -105,7 +150,7 @@ export default function App() {
         handleBack={handleBack}
         resetGame={resetGame}
       />
-      {/* <button onClick={test}>test test</button> */}
+      <button onClick={test}>test test</button>
     </div>
   );
 }

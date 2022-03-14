@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../ComponentStyles/tile.css";
 
 export default function Tile({ text, value, handleMove, history }) {
