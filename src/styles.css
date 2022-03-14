@@ -69,3 +69,17 @@ h1 {
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+.nameInput {
+  width: 25%;
+  margin: 0 15px 0 15px;
+}
+
+.playerScore {
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.playerScore:hover {
+  background: #3c3c90;
+}

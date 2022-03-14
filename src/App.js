@@ -115,25 +115,28 @@ export default function App() {
       {editNames ? (
         <div className="name-edit">
           <input
+            className="nameInput"
             type="text"
             onChange={(e) => handleNameChange(e)}
             name="X"
+            placeholder="player1"
             value={names.X}
           ></input>
           <input
+            className="nameInput"
             type="text"
             onChange={(e) => handleNameChange(e)}
             name="O"
             value={names.O}
           ></input>
-          <button onClick={toggleNameEdit}>Submit</button>
+          <button onClick={toggleNameEdit}>Save</button>
         </div>
       ) : (
         <div className="score">
-          <p onClick={toggleNameEdit}>
+          <p className="playerScore" onClick={toggleNameEdit}>
             {names["X"]}:{score.X}
           </p>
-          <p onClick={toggleNameEdit}>
+          <p className="playerScore" onClick={toggleNameEdit}>
             {names["O"]}:{score.O}
           </p>
         </div>
@@ -150,7 +153,8 @@ export default function App() {
         handleBack={handleBack}
         resetGame={resetGame}
       />
-      <button onClick={test}>test test</button>
+      {/* button used to assist in test and debugging */}
+      {/* <button onClick={test}>test test</button> */}
     </div>
   );
 }
